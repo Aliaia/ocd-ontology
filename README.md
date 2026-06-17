@@ -84,7 +84,6 @@ If you use this ontology, please cite:
 ```
 Muhajab, A., Abdelmoty, A. I., and Hassoulas, A. (2026). Development, Evaluation, 
 and Enrichment of an OCD Ontology: A Two-Stage Human–Machine Methodology. 
-Journal of Biomedical Semantics.
 ```
 
 The preliminary version of this work was presented at:
