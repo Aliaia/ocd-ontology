@@ -1,67 +1,79 @@
 # OCD Ontology
 
-A comprehensive ontology for Obsessive-Compulsive Disorder (OCD) developed at Cardiff University.
+An ontology for Obsessive-Compulsive Disorder (OCD), developed at Cardiff University.
 
-**Permanent URI:** https://w3id.org/ocd  
-**BioPortal:** https://bioportal.bioontology.org/ontologies/OCD  
-**Version:** 1.0 (2026)  
+**Permanent URI:** https://w3id.org/ocd
+**BioPortal:** https://bioportal.bioontology.org/ontologies/OCD
+**Current version:** 1.3 (14 November 2026)
 **Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ---
 
 ## Description
 
-The OCD Ontology provides a formal, comprehensive representation of Obsessive-Compulsive Disorder and its related constructs, developed from authoritative clinical sources (DSM-5, Y-BOCS) and validated by domain experts. It is the first OCD-specific ontology to model the obsession–compulsion relational structure in Description Logic terms.
+The ontology gives a formal representation of OCD and its related constructs, derived from DSM-5 and the Yale-Brown Obsessive Compulsive Scale (Y-BOCS). To our knowledge it is the first OCD-specific ontology to model the obsession-compulsion relational structure in Description Logic terms.
 
-**Key statistics:**
+**Contents of version 1.3:**
+
 - 80 OCD-specific named classes
 - 14 object properties
-- 9 external biomedical ontologies integrated (BFO, DOID, GSSO, ADL, MFOEM, MFOMD, GO, SYMP, SNOMED-CT)
-- 576 OntoLex-Lemon lexical entries (concept and property enrichment)
-- 12,878 triples total
+- 540 OntoLex-Lemon lexical entries (481 for concepts, 59 for object properties)
+- 11 external ontology resources represented: BFO, DOID, GSSO, MFOEM, MFOMD, MF, OGMS, GO, SYMP, NBO and RO
+- Annotation-level references to two SNOMED-CT concepts
 
 ---
 
 ## Repository contents
 
-| File | Description |
-|---|---|
-| `ocd.owl` | Full enriched ontology — OWL/XML format (BioPortal submission) |
-| `ocd.ttl` | Full enriched ontology — Turtle format (SPARQL-ready) |
-| `ocd-base.owl` | Base ontology — formal definitions and reuse axioms only, without lexical enrichment |
+| Path | Description |
+| --- | --- |
+| `ocd.ttl` | The ontology, current release, in Turtle |
+| `ocd.owl` | The ontology, current release, in RDF/XML (the BioPortal submission) |
+| `LICENSE` | CC BY 4.0 |
 
 ---
 
 ## Ontology structure
 
-The ontology is organised into three layers:
+**Base layer.** 80 OCD-specific classes. These cover the disorder and its place within Obsessive-Compulsive and Related Disorders, the core concepts of Obsession and Compulsion, the three constituents of obsession (intrusive thought, image and urge), eight thematic subtypes of obsession with their typed constituents, types of compulsive behaviour, risk factors, functional impairment, severity dimensions, and treatments.
 
-**Base layer** — 80 OCD-specific classes with formal Description Logic definitions, covering: the disorder and its classification within OCRDs; the core concepts of Obsession and Compulsion; three constituent intrusive experience types (Intrusive Thought, Image, Urge); eight thematic obsession subtypes; typed intrusive concepts (24 classes); compulsive behaviour types; risk factors; functional impairment types; severity assessment dimensions; treatments; and comorbid OCRD-spectrum disorders.
+**Alignment with external resources.** External classes are related to OCD classes in three ways:
 
-**Reuse layer** — integration of nine external biomedical ontologies through five documented reuse strategies, including equivalence linking to MFOMD, DOID, GSSO, and MFOEM, direct import from ADL, GO, and SYMP, referential linking to SNOMED-CT, and BFO upper-ontology alignment.
+- `owl:equivalentClass`, only where the two classes denote the same concept: Negative_Emotion (MFOEM_000212) and Mental_Counting (MF_0000004).
+- `rdfs:seeAlso`, where the definitions overlap without being equivalent: Obsession (MFOMD_0000109), Compulsion (MFOMD_0000107), Compulsive_Behavior (GSSO_001875, SNOMED-CT 12479006) and Obsessive_Compulsive_Disorder (DOID_10933, SNOMED-CT 191736004).
+- `rdfs:subClassOf` a BFO category, for one class in the current release (Assessment_Criterion).
 
-**Enrichment layer** — systematic lexical enrichment using OntoLex-Lemon and the FrAC extension, providing curated WordNet-derived synonyms for all 80 concepts and alternative surface expressions for seven OCD-specific object properties.
+Other external terms are carried at annotation level with their labels and definitions.
+
+**Enrichment layer.** Alternative surface forms for all 80 classes and for seven object properties, encoded with OntoLex-Lemon. Surface forms carry no logical force, so the enrichment layer does not change what the ontology entails.
+
+---
+
+## Version history
+
+| Version | Date | Change |
+| --- | --- | --- |
+| 1.3 | November 2026 | External alignments revised. Equivalence is retained only where the OCD class and the external class denote the same concept; the alignments of Obsession, Compulsion, Compulsive_Behavior and Obsessive_Compulsive_Disorder are now `rdfs:seeAlso` references. Labels added for three external terms. |
+| 1.2 | August 2026 | `rdfs:seeAlso` references added from Obsessive_Compulsive_Disorder and Compulsive_Behavior to SNOMED-CT concepts. |
+| 1.1 | July 2026 | Wrong-sense concept synonyms removed; surface-form enrichment added for seven object properties. |
+| 1.0 | June 2026 | First release under the persistent w3id.org IRI. |
 
 ---
 
 ## Methodology
 
-Developed using a two-stage human–machine methodology:
+The ontology was developed with a two-stage methodology, described in full in the paper cited below.
 
-- **Stage 1:** Formal concept definitions validated through expert survey (n=34 clinicians, 84–97% agreement)
-- **Stage 2:** Object property enrichment validated by independent clinical adjudication and benchmarked against two frontier LLMs
-
-Full methodology described in the journal paper (see Citation below).
+- **Stage 1.** Natural-language statements of the concept definitions were evaluated through a structured survey of 31 respondents with medical or mental health backgrounds, followed by consultation with a domain expert.
+- **Stage 2.** The surface forms curated for seven object properties were adjudicated by an independent clinical expert, blind to source, alongside alternatives generated by two large language models.
 
 ---
 
 ## Usage
 
-### Loading in Protégé
-Open `ocd.owl` directly in Protégé 5.x. The HermiT reasoner can be used for DL classification.
+**Protégé.** Open `ocd.owl` in Protégé 5.x. The HermiT reasoner can be used for classification.
 
-### SPARQL queries
-The Turtle file (`ocd.ttl`) can be loaded into any SPARQL endpoint. Example query to retrieve all obsession subtypes:
+**SPARQL.** Load `ocd.ttl` into any SPARQL endpoint. For example, to list the asserted subtypes of obsession:
 
 ```sparql
 PREFIX ocd: <https://w3id.org/ocd#>
@@ -72,24 +84,24 @@ SELECT ?subtype WHERE {
 }
 ```
 
-### BioPortal
-Browse classes, properties, and mappings interactively at https://bioportal.bioontology.org/ontologies/OCD
+The release asserts no individuals, so instance-level queries need an accompanying instance set.
+
+**BioPortal.** Classes and properties can be browsed at https://bioportal.bioontology.org/ontologies/OCD
 
 ---
 
 ## Citation
 
-If you use this ontology, please cite:
-
 ```
-Muhajab, A., Abdelmoty, A. I., and Hassoulas, A. (2026). Development, Evaluation, 
-and Enrichment of an OCD Ontology: A Two-Stage Human–Machine Methodology. 
+Muhajab, A., Abdelmoty, A. I., and Hassoulas, A. (2026). Development, Evaluation,
+and Enrichment of an OCD Ontology: A Two-Stage Human-Machine Methodology.
 ```
 
-The preliminary version of this work was presented at:
+A preliminary version of this work was presented at ICBO 2023:
+
 ```
-Muhajab, A., Abdelmoty, A. I., and Hassoulas, A. (2023). Reuse and Enrichment 
-for Building an Ontology for Obsessive-Compulsive Disorder. 
+Muhajab, A., Abdelmoty, A. I., and Hassoulas, A. (2023). Reuse and Enrichment
+for Building an Ontology for Obsessive-Compulsive Disorder.
 ICBO 2023, CEUR Workshop Proceedings, Vol. 3637.
 ```
 
@@ -97,12 +109,11 @@ ICBO 2023, CEUR Workshop Proceedings, Vol. 3637.
 
 ## Contact
 
-- **Alia I. Abdelmoty** (PI) — AbdelmotyA@cardiff.ac.uk
-- **Areej Muhajab** — MuhajabA@cardiff.ac.uk
-- School of Computer Science & Informatics, Cardiff University, Wales, UK
+- **Alia I. Abdelmoty**, School of Computer Science and Informatics, Cardiff University: abdelmotyai@cardiff.ac.uk
+- **Areej Muhajab**, Taif University: areej.n@tu.edu.sa
 
 ---
 
 ## Acknowledgements
 
-The doctoral thesis underpinning this work is available via the Cardiff University ORCA open-access repository.
+The doctoral thesis underpinning this work is available through the Cardiff University ORCA open-access repository: https://orca.cardiff.ac.uk/id/eprint/173927/
