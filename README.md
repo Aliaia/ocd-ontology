@@ -2,11 +2,11 @@
 
 An ontology for Obsessive-Compulsive Disorder (OCD), developed at Cardiff University.
 
-**Permanent URI:** https://w3id.org/ocd
-**BioPortal:** https://bioportal.bioontology.org/ontologies/OCD
-**Current version:** 1.3 (14 November 2026)
-**Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-
+- **Permanent URI:** https://w3id.org/ocd
+- **BioPortal:** https://bioportal.bioontology.org/ontologies/OCD
+- **Current version:** 1.3 (14 November 2026)
+- **Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  
 ---
 
 ## Description
